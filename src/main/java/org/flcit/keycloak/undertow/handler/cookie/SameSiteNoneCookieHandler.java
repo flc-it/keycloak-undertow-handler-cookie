@@ -17,22 +17,13 @@
 package org.flcit.keycloak.undertow.handler.cookie;
 
 import org.flcit.keycloak.undertow.handler.cookie.configuration.Configuration;
+import org.flcit.keycloak.undertow.handler.cookie.handler.SameSiteCookieHandler;
 import io.undertow.server.HttpHandler;
-import io.undertow.server.handlers.CookieSameSiteMode;
-import io.undertow.server.handlers.SameSiteCookieHandler;
 
-/**
- * 
- * @since 
- * @author Florian Lestic
- */
 public class SameSiteNoneCookieHandler extends SameSiteCookieHandler {
 
-    /**
-     * @param next
-     */
     public SameSiteNoneCookieHandler(HttpHandler next) {
-        super(next, CookieSameSiteMode.NONE.toString(), getOrNull(Configuration.getProperties().getProperty("cookie.pattern")));
+        super(next, SameSiteCookieHandler.NONE, getOrNull(Configuration.getProperties().getProperty("cookie.pattern")));
     }
 
     private static final String getOrNull(String value) {

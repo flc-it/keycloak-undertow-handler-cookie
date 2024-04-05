@@ -62,8 +62,8 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <!-- Internal dependencies version -->
         <!-- External dependencies version -->
-        <org.slf4j.version>1.7.36</org.slf4j.version>
-        <io.undertow.version>2.1.0.Final</io.undertow.version>
+        <org.slf4j.version>1.7.22</org.slf4j.version>
+        <io.undertow.version>2.0.0.Final</io.undertow.version>
 
         <!-- surefire -->
         <surefire.outputDir>${project.build.directory}/surefire-reports</surefire.outputDir>
