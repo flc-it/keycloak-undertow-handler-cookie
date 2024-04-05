@@ -1,0 +1,19 @@
+<subsystem xmlns="urn:jboss:domain:undertow:12.0" default-server="default-server" default-virtual-host="default-host" default-servlet-container="default" default-security-domain="other" statistics-enabled="${wildfly.undertow.statistics-enabled:${wildfly.statistics-enabled:false}}">
+    .........
+    <server name="default-server">
+        .......
+        <host name="default-host" alias="keycloak-dev">
+            .....
+            <!-- Active le filtre pour modifier les cookies avec SameSite=None : WildFly > 19 -->
+            <filter-ref name="samesite-cookie"/>
+            <!-- Active le filtre pour modifier les cookies avec SameSite=None : WildFly < 19 -->
+            <filter-ref name="samesite-cookie-none"/>
+        </host>
+    </server>
+    <filters>
+        <!-- Set les cookies avec SameSite=None : WildFly > 19  -->
+        <expression-filter name="samesite-cookie" expression="samesite-cookie(mode=none)"/>
+        <!-- Set les cookies avec SameSite=None : WildFly < 19  -->
+        <filter name="samesite-cookie-none" class-name="org.flcit.keycloak.undertow.handler.cookie.SameSiteNoneCookieHandler" module="org.flcit.keycloak.undertow.handler.cookie"/>
+    </filters>
+</subsystem>
